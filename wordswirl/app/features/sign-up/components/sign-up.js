@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import WideButton from '../../util/buttons/wide'
 
 
 export default class SignUp extends Component {
@@ -8,6 +9,7 @@ export default class SignUp extends Component {
     return (
       <View style={styles.container}>
         <Text>{this.props.username}</Text>
+        <WideButton />
       </View>
     )
   }

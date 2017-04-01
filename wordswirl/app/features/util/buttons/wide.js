@@ -7,13 +7,21 @@ export default class WideButton extends Component {
   render() {
     const { text, action } = this.props;
     return (
-      <View style={styles.container}>
-        <TouchableHighlight onPress={() => action()}>
-          <View style={styles.buttonContent}>
-            <Text style={styles.text}>{text}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <MKButton
+        backgroundColor={MKColor.Teal}
+        shadowRadius={2}
+        shadowOffset={{width:0, height:2}}
+        shadowOpacity={.7}
+        shadowColor="black"
+        onPress={() => {
+          console.log('hi, raised button!');
+        }}
+        >
+        <Text pointerEvents="none"
+              style={{color: 'white', fontWeight: 'bold',}}>
+          RAISED BUTTON
+        </Text>
+      </MKButton>
     )
   }
 }
