@@ -1,46 +1,29 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import WideButton from './features/util/buttons/wide'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import * as reducers from './state';
+import SignUpContainer from './features/sign-up/containers/main';
+
+const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: false
-    }
-  }
-
-  buttonAction = () => {
-    const { clicked } = this.state;
-    this.setState({
-      clicked: !clicked
-    });
-  }
-
   render() {
-    console.log("Starting");
-    const { clicked } = this.state
+    console.log(store.getState());
     return (
-      <View style={styles.container}>
-        <Text>{(clicked) ? "Clicked" : "Not clicked"}</Text>
-        <View style={styles.buttonView}>
-          <WideButton text={"Button"} action={this.buttonAction} />
-        </View>
-      </View>
+      <Provider store={store} >
+        <SignUpContainer />
+      </Provider>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    backgroundColor: "#F8F8F8",
-    borderWidth: 1
-  },
-  buttonView: {
-    flexDirection: 'row'
+    flex: 1
   }
 });
