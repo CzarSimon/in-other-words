@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import { font, length, color } from '../../../styles/params';
 import card from '../../../styles/card'
+import { MKButton, MKColor } from 'react-native-material-kit'
 
 export default class WideButton extends Component {
   render() {
