@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateUsername, saveNewUser } from '../../../state/user';
+import { updateUsername, saveNewUser, getUser } from '../../../state/user';
+import DeviceInfo from 'react-native-device-info';
 import SignUp from '../components/sign-up';
 
 class SignUpContainer extends Component {
+  componentDidMount() {
+    this.props.actions.getUser();
+  }
+
   updateUsername = username => {
     this.props.actions.updateUsername(username)
   }
@@ -13,7 +18,7 @@ class SignUpContainer extends Component {
     const { state, actions } = this.props;
     const newUser = {
       username: state.user.name,
-      userId: 'eee'
+      userId: DeviceInfo.getUniqueID()
     }
     this.props.actions.saveNewUser(newUser);
   }
@@ -37,6 +42,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
+    getUser,
     updateUsername,
     saveNewUser
   }, dispatch)

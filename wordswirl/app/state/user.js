@@ -8,9 +8,7 @@ export const NO_USER_RECEIVED = 'NO_USER_RECEIVED';
 export const SAVE_USER = 'SAVE_USER';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 
-const initalState = {
-  name: "Luckeboy"
-}
+const initalState = {}
 /* --- Reducer --- */
 const user = (state = initalState, action = {}) => {
   switch (action.type) {
@@ -58,3 +56,8 @@ export const noUserRecived = createAction(NO_USER_RECEIVED);
 export const updateUsername = createAction(
   UPDATE_USERNAME, username => ({ username })
 );
+
+export const saveNewUser = user => (
+  dispatch => AsyncStorage.setItem(USER_KEY, JSON.stringify(user))
+  .then(dispatch(receiveUser(user)))
+)

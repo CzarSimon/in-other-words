@@ -13,7 +13,6 @@ const store = createStoreWithMiddleware(reducer);
 
 export default class App extends Component {
   render() {
-    console.log(store.getState());
     return (
       <Provider store={store} >
         <SignUpContainer />

@@ -14,13 +14,9 @@ export default class WideButton extends Component {
         shadowOffset={{width:0, height:3}}
         shadowOpacity={.7}
         shadowColor="black"
-        onPress={() => {
-          console.log('hi, raised button!');
-        }}
-        style = {styles.buttonLayout}
-        >
-        <Text pointerEvents="none"
-              style={styles.text}>
+        onPress={() => action()}
+        style={styles.buttonLayout} >
+        <Text pointerEvents="none" style={styles.text}>
           {this.props.text}
         </Text>
       </MKButton>

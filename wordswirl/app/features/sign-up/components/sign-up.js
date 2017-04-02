@@ -6,7 +6,7 @@ import { MKTextField, MKColor } from 'react-native-material-kit';
 
 export default class SignUp extends Component {
   render() {
-    const { username, updateUsername } = this.props;
+    const { username, updateUsername, saveNewUser } = this.props;
     return (
       <View style={styles.container}>
         <Text style={styles.welcomeText}>Welcome to wordswirl!</Text>
@@ -18,7 +18,7 @@ export default class SignUp extends Component {
           onTextChange={updateUsername}
           style={styles.textfield}
         />
-        <WideButton text={"Create User"} />
+      <WideButton text={"Create User"} action={saveNewUser}/>
       </View>
     )
   }
