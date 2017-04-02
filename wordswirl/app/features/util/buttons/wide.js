@@ -11,16 +11,17 @@ export default class WideButton extends Component {
       <MKButton
         backgroundColor={MKColor.Teal}
         shadowRadius={2}
-        shadowOffset={{width:0, height:2}}
+        shadowOffset={{width:0, height:3}}
         shadowOpacity={.7}
         shadowColor="black"
         onPress={() => {
           console.log('hi, raised button!');
         }}
+        style = {styles.buttonLayout}
         >
         <Text pointerEvents="none"
-              style={{color: 'white', fontWeight: 'bold',}}>
-          RAISED BUTTON
+              style={styles.text}>
+          {this.props.text}
         </Text>
       </MKButton>
     )
@@ -31,8 +32,6 @@ const styles = StyleSheet.create({
   container: {
     ...card,
     flex: 1,
-    alignItems: 'stretch',
-    marginHorizontal: length.medium
   },
   buttonContent: {
     flexDirection: 'row',
@@ -42,10 +41,15 @@ const styles = StyleSheet.create({
     backgroundColor: color.red,
     padding: length.medium
   },
+  buttonLayout: {
+    marginHorizontal: length.large,
+    padding: length.medium
+  },
   text: {
     fontFamily: font.sans.bold,
     fontSize: font.size.large,
     color: color.white,
+    alignSelf: 'center',
     fontWeight: 'bold'
   }
 })

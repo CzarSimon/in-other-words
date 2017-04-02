@@ -18,7 +18,7 @@ export default class SignUp extends Component {
           onTextChange={updateUsername}
           style={styles.textfield}
         />
-        <WideButton />
+        <WideButton text={"Create User"} />
       </View>
     )
   }
