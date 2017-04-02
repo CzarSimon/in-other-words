@@ -8,7 +8,9 @@ export const NO_USER_RECEIVED = 'NO_USER_RECEIVED';
 export const SAVE_USER = 'SAVE_USER';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 
-const initalState = {}
+const initalState = {
+  exists: false
+};
 /* --- Reducer --- */
 const user = (state = initalState, action = {}) => {
   switch (action.type) {
@@ -16,12 +18,12 @@ const user = (state = initalState, action = {}) => {
       return {
         ...state,
         ...action.payload.user,
-        userExists: true
+        exists: true
       };
     case NO_USER_RECEIVED:
       return {
         ...state,
-        userExists: false
+        exists: false
       }
     case UPDATE_USERNAME:
       return {

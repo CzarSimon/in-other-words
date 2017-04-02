@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Plattform } from 'react-native';
+import { Platform, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateUsername, saveNewUser, getUser } from '../../../state/user';
@@ -22,7 +22,7 @@ class SignUpContainer extends Component {
     const newUser = {
       name: state.user.name,
       userId: getUniqueID(),
-      os: Plattform.OS,
+      os: Platform.OS,
       country: getDeviceCountry(),
       language: head(split(getDeviceLocale(), '-'))
     }
@@ -31,14 +31,24 @@ class SignUpContainer extends Component {
 
   render() {
     const { user } = this.props.state;
-    return (
-      <SignUp
-        username={user.name}
-        updateUsername={this.updateUsername}
-        saveNewUser={this.saveNewUser} />
-    )
+    if (user.exists) {
+      return (<View style={styles.container}><Text>{user.name}</Text></View>) // Change this to home menu container
+    } else {
+      return (
+        <SignUp
+          username={user.name}
+          updateUsername={this.updateUsername}
+          saveNewUser={this.saveNewUser} />
+      )
+    }
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 const mapStateToProps = state => ({
   state: {
