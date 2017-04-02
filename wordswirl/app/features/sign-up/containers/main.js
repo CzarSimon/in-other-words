@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Plattform } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateUsername, saveNewUser, getUser } from '../../../state/user';
+import { head, split } from 'lodash';
 import DeviceInfo from 'react-native-device-info';
 import SignUp from '../components/sign-up';
 
@@ -16,9 +18,13 @@ class SignUpContainer extends Component {
 
   saveNewUser = () => {
     const { state, actions } = this.props;
+    const { getUniqueID, getDeviceCountry, getDeviceLocale } = DeviceInfo;
     const newUser = {
-      username: state.user.name,
-      userId: DeviceInfo.getUniqueID()
+      name: state.user.name,
+      userId: getUniqueID(),
+      os: Plattform.OS,
+      country: getDeviceCountry(),
+      language: head(split(getDeviceLocale(), '-'))
     }
     this.props.actions.saveNewUser(newUser);
   }
